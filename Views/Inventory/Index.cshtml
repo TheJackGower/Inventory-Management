@@ -1,0 +1,90 @@
+﻿@model InventoryManagement.Models.Inventory
+
+<style>
+    header {
+        display: none
+    }
+
+    #inventory, body {
+        background-color: #F8F8F8;
+    }
+
+        #inventory [class*="col-"] {
+            padding-bottom: 30px;
+        }
+
+        #inventory .inner {
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+        }
+</style>
+
+<form asp-action="Update" asp-controller="Inventory">
+
+    @Html.HiddenFor(x => x.CurrentDate)
+
+    <div class="row">
+        <div class="col">
+            <h2>Current Date - <small>@Model.CurrentDate.ToLongDateString()</small></h2>
+        </div>
+    </div>
+
+    <div class="row pb-4">
+        <div class="col text-center">
+            <input type="submit" class="btn btn-primary" value="Adjust Quality & Sellin-Days" />
+        </div>
+    </div>
+
+    <div class="row" id="inventory">
+
+        @for (int i = 0; i < Model.InventoryItemList.Count(); i++)
+        {
+            @Html.HiddenFor(x => x.InventoryItemList[i].ID)
+            @Html.HiddenFor(x => x.InventoryItemList[i].Name)
+            @Html.HiddenFor(x => x.InventoryItemList[i].OverSellBy)
+            @Html.HiddenFor(x => x.InventoryItemList[i].IgnoreRules)
+
+            <div class="col-md-3">
+                <div class="inner shadow text-center">
+                    <h3 class="text-primary">@Model.InventoryItemList[i].Name</h3>
+
+                    @Model.InventoryItemList[i].OverSellBy
+
+                    <hr />
+
+                    <div class="form-group">
+                        <label class="form-label" asp-for="@Model.InventoryItemList[i].Quality"></label>
+                        <input type="number" class="form-control" asp-for="@Model.InventoryItemList[i].Quality" readonly>
+                    </div>
+
+                    @if (Model.InventoryItemList[i].IgnoreRules)
+                    {
+                        <div class="form-group">
+                            <label class="form-label">Never has to be sold or decreases in Quality</label>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="form-label" asp-for="@Model.InventoryItemList[i].SellByDate"></label>
+                                    <input type="text" class="form-control" asp-for="@Model.InventoryItemList[i].SellByDate" readonly>
+                                </div>
+
+                                <div class="col-6">
+                                    <label class="form-label" asp-for="@Model.InventoryItemList[i].SellInValue"></label>
+                                    <input type="text" class="form-control" asp-for="@Model.InventoryItemList[i].SellInValue" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        }
+    </div>
+
+</form>
