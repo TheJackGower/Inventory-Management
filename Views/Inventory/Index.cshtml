@@ -1,7 +1,13 @@
 ﻿@model InventoryManagement.Models.Inventory
 
 <style>
-    header {
+
+    /*
+        Quick styles
+        Would normally do in stylesheets and then bundle etc...
+    */
+
+    header, footer {
         display: none
     }
 
@@ -44,14 +50,23 @@
             @Html.HiddenFor(x => x.InventoryItemList[i].Name)
             @Html.HiddenFor(x => x.InventoryItemList[i].OverSellBy)
             @Html.HiddenFor(x => x.InventoryItemList[i].IgnoreRules)
+            @Html.HiddenFor(x => x.InventoryItemList[i].IsFrozen)
+            @Html.HiddenFor(x => x.InventoryItemList[i].IsFresh)
+            @Html.HiddenFor(x => x.InventoryItemList[i].IsCheese)
+            @Html.HiddenFor(x => x.InventoryItemList[i].IsChristmasItem)
 
             <div class="col-md-3">
                 <div class="inner shadow text-center">
                     <h3 class="text-primary">@Model.InventoryItemList[i].Name</h3>
 
-                    @Model.InventoryItemList[i].OverSellBy
-
                     <hr />
+
+                    @if (Model.InventoryItemList[i].SellInValue < 0)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            Sell by date passed
+                        </div>
+                    }
 
                     <div class="form-group">
                         <label class="form-label" asp-for="@Model.InventoryItemList[i].Quality"></label>
@@ -66,7 +81,6 @@
                     }
                     else
                     {
-
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">

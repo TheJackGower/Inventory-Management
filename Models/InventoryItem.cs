@@ -10,15 +10,20 @@ namespace InventoryManagement.Models
     public class InventoryItem
     {
         public InventoryItem()
-        { }
+        {
+        }
 
-        public InventoryItem(int _id, string _Name, int _Quality, DateTime? _SellByDate, bool _IgnoreRules)
+        public InventoryItem(int _id, string _Name, int _Quality, DateTime? _SellByDate, bool _IgnoreRules, bool? _IsFresh = null, bool? _IsFrozen = null, bool? _IsCheese = null, bool? _IsChristmasItem = null)
         {
             ID = _id;
             Name = _Name;
             Quality = _Quality;
             SellByDate = _SellByDate;
             IgnoreRules = _IgnoreRules;
+            IsFresh = _IsFresh;
+            IsFrozen = _IsFrozen;
+            IsCheese = _IsCheese;
+            IsChristmasItem = _IsChristmasItem;
         }
 
         public int ID { get; set; }
@@ -49,5 +54,13 @@ namespace InventoryManagement.Models
         /// </summary>
         public bool IgnoreRules { get; set; }
 
+        // Flags used to check item type
+        public bool? IsFresh { get; set; }
+
+        public bool? IsFrozen { get; set; }
+
+        public bool? IsCheese { get; set; }
+
+        public bool? IsChristmasItem { get; set; }
     }
 }
