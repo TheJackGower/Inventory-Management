@@ -30,6 +30,8 @@ namespace InventoryManagement.Controllers
         /// List used to first load inventory.
         /// Would obviously come from database via Stored Procedure or Context etc.
         /// Just for quick demo purpose.
+        /// 
+        /// Values can be added or modified to change inventory
         /// </summary>
         public List<InventoryItem> GetInventoryList()
         {
