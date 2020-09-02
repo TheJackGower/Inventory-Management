@@ -11,11 +11,3 @@ A single item in the inventory represents an InventoryItem.cs within the Models 
 I create a list and pass it in to the view within the InventoryController. Here I also call the "Update" method every button clicks, which allows me to pass back the list to the action, change the values, and pass back to the view for visual changes.
 
 The ui and styles was just a quick mock up to display the inventory. I've discussed all methods and reasons for using them within the project files. I'm also just creating the list in the code behind, in a real environtment it would obviously come from a database etc. I've used .NET CORE MVC and Bootstrap 4.
-
-Any questions please let me know
-
-Jack Gower
-
-07532449422
-jack@jackgower.com
-jackgower.com
